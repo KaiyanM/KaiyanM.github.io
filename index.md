@@ -9,3 +9,5 @@ This is my personal blog and knowledge base where I write down my thoughts all a
 ## Post
 
 [Link to format notes](./another-page.html).
+
+[Link to my notes](./my-page.html).
