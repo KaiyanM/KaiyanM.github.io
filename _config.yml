@@ -1,4 +1,5 @@
 title: "Acorn Piece"
+logo: /assets/img/logo.png
 author: "Kaiyan Ma"
 description: "Kaiyan's personal tech blog." 
 # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
@@ -40,3 +41,9 @@ defaults:
       type: post
     values:
       tags: Other
+
+
+
+
+show_downloads: true
+google_analytics:
