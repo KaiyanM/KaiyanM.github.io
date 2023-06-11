@@ -44,4 +44,5 @@ defaults:
 
 
 site.show_downloads: false
+site.github.is_user_page: false
 google_analytics:
