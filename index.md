@@ -1,5 +1,3 @@
-Here you can say lots of fun things about your site.
+Hi and welcome!
 
-Maybe say a some things about yourself.
-
-Or maybe what you plan to blog about.
+This is my personal blog (or better my knowledge base) where I write about thoughts all around study, research, or anything else I'm interested in.
