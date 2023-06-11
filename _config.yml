@@ -43,7 +43,5 @@ defaults:
       tags: Other
 
 
-
-
-show_downloads: true
+site.show_downloads: false
 google_analytics:
