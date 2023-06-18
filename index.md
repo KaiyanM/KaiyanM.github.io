@@ -16,3 +16,5 @@ This is my personal blog and knowledge base where I write about thoughts all aro
 
 
 [math expression](./mypost/writing-mathematical-expressions.html).
+
+add scripts but not sure if it works...

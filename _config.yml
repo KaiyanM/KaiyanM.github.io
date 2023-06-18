@@ -4,3 +4,4 @@ description: Kaiyan's personal tech blog.
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
+mathjax: true
