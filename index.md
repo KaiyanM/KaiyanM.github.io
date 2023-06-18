@@ -13,3 +13,6 @@ This is my personal blog and knowledge base where I write about thoughts all aro
 [Quantifying common and distinct information in single-cell multimodal data with Tilted-CCA](./mypost/06-11-2023.html).
 
 [Link to format notes](./mypost/another-pagecopy.html).
+
+
+[math expression](./mypost/writing-mathematical-expressions.html).
