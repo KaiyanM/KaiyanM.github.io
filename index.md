@@ -10,4 +10,4 @@ This is my personal blog and knowledge base where I write about thoughts all aro
 
 [Link to format notes](./another-page.html).
 
-[06-11-2023](./06-11-2023.html).
+[06-11-2023](./mypost/06-11-2023.html).
