@@ -61,7 +61,7 @@ plugins:
 author:
   name   : "Kaiyan Ma"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "A small pinch of sparkling whimsical stuff collected in my research studies."
+  bio    : "A small pinch of sparkling whimsical stuff in statistical research studies."
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
