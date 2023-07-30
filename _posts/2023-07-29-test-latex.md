@@ -1,11 +1,12 @@
 ---
-title: "twice Test latex!"
+title: "now twice Test latex!"
 date: 2019-04-18T15:34:30-04:00
 categories:
   - blog
 tags:
   - Jekyll
   - update
+ <script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 ---
 
 # Testing out latex
