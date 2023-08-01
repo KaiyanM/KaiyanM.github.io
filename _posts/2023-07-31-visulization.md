@@ -1,6 +1,6 @@
 ---
-title: "Now the Latex works!"
-date: 2023-07-31T15:34:30-04:00
+title: "Muti-Omics Package Review"
+date: 2023-07-31T16:34:30-04:00
 categories:
   - blog
 Tags:
