@@ -8,11 +8,11 @@ tags:
   - Academic Writing
 ---
 
-For essays that shed light on the background and present research, it is relatively easy to make the structure apparent to the audience. However, it is not quite so for making it less brusque. Here are the opening paragraphs that I found inspiring for my writing. 
+For essays that shed light on the background and present research, it is relatively easy to make the structure apparent to the audience. However, it is not quite so for making it less brusque. Here are the opening paragraphs that I found as a case study to improve my writing.
 
 > A new era of personalized medicine has arrived, which proposes an individualized health care model with tailored medical target treatment and management for each patient (Chin et al., 2011). Under this regime, not only clinical profiles of patients but also their molecular profiles are personally managed to drive for advanced treatment. Cancer studies that are focused on one-dimensional omics data have only provided limited information regarding the etiology of oncogenesis and tumor progression. To overcome this, tremendous efforts have been made to obtain multi-platform based genomic data from biospecimen.
 
-This is an excellent background introduction for imitating writing. It's better to use specific cases to depict the application scenarios rather than solely emphasize the importance. (Question: how do you find or imagine the actual application? Especially when the topic came from a minor issue, though it's indeed helping for something, it's hard to make it both specific and not too niche.)
+Background introduction with specific cases to depict the application scenarios is way more reader-friendly than solely emphasizing the importance. (Question: how do you find or imagine the actual application? Especially when the topic came from a minor issue, though it's indeed helping for something, it's hard to make it both specific and not too niche.)
 
 Multi-platform-based molecular profiles look like social networks and user portraits. Perhaps we can transfer some techniques between them.
 
