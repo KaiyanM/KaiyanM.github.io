@@ -7,8 +7,6 @@ tags:
   - Probability
 ---
 
-## Introduction
-
 The name copula comes from the Latin for "link" or "tie", as it literally means this model is used to describe the inter-correlation between random variables. More specifically,  it is a multivariate CDF for which the marginal probability distribution of each variable is uniform on the interval [0, 1]. 
 
 It's widely used in estimating high-dimensional applications since any multivariate joint distribution can be written in terms of univariate marginal distribution functions and a copula that describes the dependence structure between the variables, according to [Sklar's theorem](https://stats.stackexchange.com/questions/485219/derivation-of-sklars-theorem-for-copula#:~:text=Sklar's%20theorem%20states%20that%20the,copula%20of%20X%20and%20Y.)
