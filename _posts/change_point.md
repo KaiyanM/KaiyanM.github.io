@@ -7,68 +7,60 @@ tags:
   - High-Dimensional
 ---
 
-[original paper](https://ascopubs.org/doi/full/10.1200/JCO.22.01457)
+[original paper](https://arxiv.org/abs/2404.07864)
 
-For essays that shed light on the background and present research, it is relatively easy to make the structure apparent to the audience. However, it is not quite so for making it less brusque. Here are the opening paragraphs that I found as a case study to improve my writing.
+This paper aims to address the problem of localizing change points in high-dimensional linear regression.
+> What is it and why it is important?
 
-> A new era of personalized medicine has arrived, which proposes an individualized health care model with tailored medical target treatment and management for each patient (Chin et al., 2011). Under this regime, not only clinical profiles of patients but also their molecular profiles are personally managed to drive for advanced treatment. Cancer studies that are focused on one-dimensional omics data have only provided limited information regarding the etiology of oncogenesis and tumor progression. To overcome this, tremendous efforts have been made to obtain multi-platform based genomic data from biospecimen.
+Their major contribution is to put forward an Approximate Message Passing algorithm for estimating signals and changing point location. 
+> How does it exploit prior information on signal noise and change points? More specifically, to compute the approximate posterior distribution?
 
-Background introduction with specific cases to depict the application scenarios is way more reader-friendly than solely emphasizing the importance. (Question: how do you find or imagine the actual application? Especially when the topic came from a minor issue, though it's indeed helping for something, it's hard to make it both specific and not too niche.)
+Keep the above questions in mind and I'll go through the essay to find the answers.
 
-Multi-platform-based molecular profiles look like social networks and user portraits. Perhaps we can transfer some techniques between them.
+## Background intro
 
-> However, human genomes are complex and regulated at multiple levels, which can be manifested by various genomic assays mentioned above. While each of these assays offers a peek at the complex system, these events are rather interdependent (or interactive). Thus, when combining several different omics data to discover the coherent biological signatures, it is challenging to incorporate different biological layers of information to predict phenotypic outcomes (tumor/normal, early/late stage, survival, etc.). It is herein our goal to address the pressing and challenging issues for developing novel algorithms and theoretical methods for multi-omics data integration, in the hope to extract biologically meaningful information of clinical relevance.
+#### Heterogeneity in high-dimensional datasets
 
-Again, the structure is pretty straightforward: the problem, the present works are good but limited, our attempt, our challenge, and our goal. It's also helpful to use higher vocabulary to make it sound more professional, like **coherent biological signatures**, **incorporate**(instead of combine), **herein**(instead of thus), and **novel**(against new). 
+Heterogeneity means that the regression parameters are not constant across the data, but vary depending on some factors. When the data are ordered by time, a simple form of heterogeneity is a change in the data-generating mechanism at certain unknown instants of time. If these ‘change points’ were known, or estimated accurately, the dataset could be partitioned into homogeneous subsets, each amenable to analysis via standard statistical techniques (Fryzlewicz, 2014). 
 
-localizing change points in high-dimensional linear regression
-what is it
-why it is important
+#### Models with change points overview
 
-Approximate Message Passing angorithm for estimatiing signals and change point location
-usage: exploit prior informaion on signal noise and change points
-benifit: enable uncertainty quantification with computable approximate posterior distribution
+In a variety of fields including genomics, neuroscience, and economics, the detection of changes is studied with the following statistical contexts: 
 
-:D
+1. signal means (Wang & Samworth, 2018; Wang et al., 2020; Liu et al., 2021); 
+2. covariance structures (Cho & Fryzlewicz, 2015; Wang et al., 2021b); 
+3. graphs (Londschien et al., 2023; Bhattacharjee et al., 2020; Fan & Guan, 2018); 
+4. dynamic networks (Wang et al., 2021a); and functionals (Madrid Padilla et al., 2022). 
 
-## background intro
-Heterogeneity in high-dimensional  datasets. 
-> the hetero among features? days?
-When the data are ordered by time, a simple form of heterogeneity is a change in the data generating mechanism at certain unknown instants of time. 
+## Change points in High-dimensional Linear Regression
 
-If these ‘change points’ were known, or estimated accurately, the dataset could be partitioned into homogeneous subsets, each amenable to analysis via standard statistical techniques (Fryzlewicz, 2014). 
+#### Concepts
 
-Models with change points have been studied in a variety of statistical contexts, such as the detection of changes in: 
-signal means (Wang & Samworth, 2018; Wang et al., 2020; Liu et al., 2021); 
-covariance structures (Cho & Fryzlewicz, 2015; Wang et al., 2021b); 
-graphs (Londschien et al., 2023; Bhattacharjee et al., 2020; Fan & Guan, 2018); 
-dynamic networks (Wang et al., 2021a); and functionals (Madrid Padilla et al., 2022). 
+1. Change points: The sample indices where regression vector $\beta^{(i)}$ changes. (We set the number of change points to be $L^*-1$)
+2. Distinct signals: The distinct straight lines in the $\beta^{(i)}$s sequence. (We set the number of distinct signals to be $L^*$, with the upper bound $L$)
 
-Change pointmodels have found application in a range of fields including genomics (Braun et al., 2000), neuroscience (Aston & Kirch, 2012), and economics (Andreou & Ghysels, 2002).
+> goal: estimate change point location and $L*$, also quantify uncertainty via confidence set or posterior distribution.
 
-## change points in high-dimensional linear regression
+#### Recent works
 
-change points: sample indices where regression vector $\beta^{(i)}$ changes. number: $L*-1$
-distinct signals: distinct signals in the sequence of $\beta^{(i)}$s. number: $L*$. upper bound: $L$
+1. Sparse: Most of these papers consider the setting where the signals are sparse and analyze procedures that combine the LASSO estimator (or a variant) with a partitioning technique, e.g., dynamic programming. However, incorporating sparsity-based constraints cannot be easily adapted to take advantage of other types of signal priors.  
 
-goal: estimate change point location and $L*$, also quantify uncertainty via confidence set or posterior distribution
+2. Bayesian: Bayesian approaches to change point detection have been studied in several works, however, they mainly focus on (low-dimensional) time series.
 
-recent works of high-dimentional linear regression with change points: 
-Lee et al., 2016; Leonardi & Bu ̈hlmann, 2016; Kaul et al., 2019; Rinaldo et al., 2021; Xu et al., 2022; Li et al., 2023; Bai & Safikhani, 2023
-
-Most of these papers consider the setting where the signals are sparse and analyze procedures that combine the LASSO estimator (or a variant) with a partitioning technique, e.g., dynamic programming. Although existing procedures for high-dimensional change point regression incorporate sparsity-based constraints, they cannot be easily adapted to take advantage of other kinds of signal priors. 
- > what kind of priors?
- Moreover, they are not well-equipped to exploit prior information on the change point locations. 
- > what prior information?
- 
- Bayesian approaches to change point detection have been studied in several works, however they mainly focus on (low-dimensional) time-series.
+> Authors claim their method is especially good at exploiting prior information on the change point locations, which the above works can hardly do. What is that prior information and how much can we gain from it?
  
  
- ##
- 
- phi ? [L]^n ? [] is a set with sequence {1,2,....L}, so phi [L]^n is a vector where each element in the vector belong to that set separately
- 
-A[:,phi] see tissue
+ ## Describe AMP
+
+The model's ideas can be straightforward, but it's a subtle work to encode them into formal mathematical language and be cautious to avoid exceptional cases slipping through the cracks.
+
+Here are some notes I took down while reading this paper. (I feel that they are helpful for both understanding AMP and learning to deliver complex system.)
+
+[!!! add pics from notebooks later]
+
+Note that [] is a set with sequence {1,2,....L}, so $ \phi[L]^n$ is a vector where each element in the vector belongs to that set separately.
+
+
 
 
 
