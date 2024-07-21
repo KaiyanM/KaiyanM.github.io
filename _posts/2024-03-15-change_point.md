@@ -56,7 +56,11 @@ The model's ideas can be straightforward, but it's a subtle work to encode them 
 
 Here are some notes I took down while reading this paper. (I feel that they are helpful for both understanding AMP and learning to deliver complex system.)
 
-[!!! add pics from notebooks later]
+<img src="{{ site.url }}{{ site.baseurl }}/assets/images/changepoint/1.jpg" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/images/changepoint/2.jpg" alt="">
+
+<img src="{{ site.url }}{{ site.baseurl }}/assets/images/changepoint/3.jpg" alt="">
 
 Note that [] is a set with sequence {1,2,....L}, so $ \phi[L]^n$ is a vector where each element in the vector belongs to that set separately.
 
