@@ -81,7 +81,7 @@ Starting with an initializer $B^0\in R^{p\times L}$ and defining $\hat{R}^{-1}:=
 \end{align}
 
 where the denoising functions $g^t: R^{n\times L}\times R^{n}\to R^{n\times L}$ and $f^t: R^{p\times L}\to R^{p\times L}$ are used to define the matrices $F^t$, $C^t$ as follows:
-$C^t &= \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}(\Theta^t, y)$
+$C^{t} = \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}(\Theta^t, y)$
 $F^{t} = \frac{1}{n} \sum_{j=1}^p d_j{f_j^{t}}(B^{t})$
 
 Here $\partial_i{g^t_i}\left(\Theta, y\right)$ is the $L\times L$ Jacobian  of $g^t_i$ w.r.t. the $i$th row of $\Theta$.
