@@ -67,33 +67,24 @@ So the goal of the AMP algorithm is to estimate the signal matrix $B$ and true c
 ## AMP as an iteration method
 That's the part I spent the longest time on... Since I'm not familiar with this kind of iteration algorithm, I started with the [Jacobi and Gauss-Seidel Iterative Methods](https://www3.nd.edu/~zxu2/acms40390F12/Lec-7.3.pdf) to understand the innovation of AMP. 
 
-In each iteration $t \ge 1$, AMP produces an updated estimate of the signal matrix $\B$, which we call $\B^t$, and of the linearly transformed signal $\TTheta:=\X\B$, which we call $\TTheta^t$. 
+In each iteration $t \ge 1$, AMP produces an updated estimate of the signal matrix $B$, which we call $B^t$, and of the linearly transformed signal $\Theta:=XB$, which we call $\Theta^t$. 
 These estimates have distributions that can be described by a deterministic low-dimensional matrix recursion called \textit{state evolution}. 
 
-Starting with an initializer $\B^0\in\reals^{p\times L}$ and defining $\hat{\bR}^{-1}:=\0_{n\times L}, $ for $t \geq 0$ the algorithm computes:
+Starting with an initializer $B^0\in\reals^{p\times L}$ and defining $\hat{R}^{-1}:=\0_{n\times L}, $ for $t \geq 0$ the algorithm computes:
 %%
 \begin{align}
 \begin{split}
 \label{eq:amp}
-    &\TTheta^{t} = \X \hat{\B}^t -  \hat{\bR}^{t-1} (\F^t)^\top\,, \; \; \; \hat{\bR}^t = g^t\left(\TTheta^t, \y\right) \, ,  \\
-    &\B^{t+1} = \X^\top \hat{\bR}^t -  \hat{\B}^{t} (\C^t)^\top\,, \; \; \; \hat{\B}^{t} = f^{t}\left(\B^{t}\right), \, \\
+    &\Theta^{t} = X \hat{B}^t -  \hat{R}^{t-1} (\F^t)^\top\,, \; \; \; \hat{R}^t = g^t\left(\Theta^t, \y\right) \, ,  \\
+    &B^{t+1} = X^\top \hat{R}^t -  \hat{B}^{t} (C^t)^\top\,, \; \; \; \hat{B}^{t} = f^{t}\left(\B^{t}\right), \, \\
 \end{split}
 \end{align}
-where the denoising functions $g^t: \R^{n\times L}\times \R^{n}\to \R^{n\times L}$ and $f^t: \R^{p\times L}\to \R^{p\times L}$ are used to define the matrices $\F^t$, $\C^t$ as follows:
+
+where the denoising functions $g^t: R^{n\times L}\times R^{n}\to R^{n\times L}$ and $f^t: R^{p\times L}\to R^{p\times L}$ are used to define the matrices $F^t$, $C^t$ as follows:
 \begin{align*}
-    \C^t &= \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\TTheta^t, \y\right)\, , \; \; \; \F^{t} = \frac{1}{n} \sum_{j=1}^p \d_j{f_j^{t}}(\B^{t}).
+    C^t &= \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\Theta^t, \y\right)\, , \; \; \; \F^{t} = \frac{1}{n} \sum_{j=1}^p \d_j{f_j^{t}}(B^{t}).
 \end{align*}
-Here $\partial_i{g^t_i}\left(\TTheta, \y\right)$ is the $L\times L$ Jacobian  of $g^t_i$ w.r.t. the $i$th row of $\TTheta$.
-Similarly, $\d_j{f_j^{t}}(\B^{t})$ is the $L \times L$ Jacobian of $f_j^t$ with respect to the $j$-th row of its argument. 
 
-Rewrite it into:
-%%
-\begin{align}
-\begin{split}
-\label{eq:amp}
-    &(\X\B)^{t} = \X \hat{\B}^t -  \hat{\bR}^{t-1} (\F^t)^\top\,, \; \; \; \hat{\bR}^t = g^t\left((\X\B)^t, \y\right) \, ,  \\
-    &\B^{t+1} = \X^\top \hat{\bR}^t -  \hat{\B}^{t} (\frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\TTheta^t, \y\right))^\top\,, \; \; \; \hat{\B}^{t} = f^{t}\left(\B^{t}\right), \, \\
-\end{split}
-\end{align}
-
+Here $\partial_i{g^t_i}\left(\Theta, \y\right)$ is the $L\times L$ Jacobian  of $g^t_i$ w.r.t. the $i$th row of $\Theta$.
+Similarly, $\d_j{f_j^{t}}(B^{t})$ is the $L \times L$ Jacobian of $f_j^t$ with respect to the $j$-th row of its argument. 
 
