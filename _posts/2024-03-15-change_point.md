@@ -7,15 +7,13 @@ tags:
   - High-Dimensional
 ---
 
-[original paper](https://arxiv.org/abs/2404.07864)
+This paper aims to address the problem of localizing change points in high-dimensional linear regression. Their major contribution is to put forward an [Approximate Message Passing algorithm](https://arxiv.org/abs/2404.07864) for estimating signals and changing point locations. 
 
-This paper aims to address the problem of localizing change points in high-dimensional linear regression.
 > What is it and why it is important?
 
-Their major contribution is to put forward an Approximate Message Passing algorithm for estimating signals and changing point location. 
-> How does it exploit prior information on signal noise and change points? More specifically, to compute the approximate posterior distribution?
+> How does it exploit prior information on signal noise and change points? More specifically, how to compute the approximate posterior distribution?
 
-Keep the above questions in mind and I'll go through the essay to find the answers.
+These are the questions raised in my mind when I start reading and I'll go through the essay to find the answers.
 
 ## Background intro
 
@@ -50,7 +48,7 @@ In a variety of fields including genomics, neuroscience, and economics, the dete
 > Authors claim their method is especially good at exploiting prior information on the change point locations, which the above works can hardly do. What is that prior information and how much can we gain from it?
  
  
- ## Describe AMP
+## Describe change points
 
 The model's ideas can be straightforward, but it's a subtle work to encode them into formal mathematical language and be cautious to avoid exceptional cases slipping through the cracks.
 
@@ -64,7 +62,38 @@ Here are some notes I took down while reading this paper. (I feel that they are 
 
 Note that [] is a set with sequence {1,2,....L}, so $ \phi[L]^n$ is a vector where each element in the vector belongs to that set separately.
 
+So the goal of the AMP algorithm is to estimate the signal matrix $B$ and true change points in $\eta$.
 
+## AMP as an iteration method
+That's the part I spent the longest time on... Since I'm not familiar with this kind of iteration algorithm, I started with the [Jacobi and Gauss-Seidel Iterative Methods](https://www3.nd.edu/~zxu2/acms40390F12/Lec-7.3.pdf) to understand the innovation of AMP. 
 
+In each iteration $t \ge 1$, AMP produces an updated estimate of the signal matrix $\B$, which we call $\B^t$, and of the linearly transformed signal $\TTheta:=\X\B$, which we call $\TTheta^t$. 
+These estimates have distributions that can be described by a deterministic low-dimensional matrix recursion called \textit{state evolution}. 
+
+Starting with an initializer $\B^0\in\reals^{p\times L}$ and defining $\hat{\bR}^{-1}:=\0_{n\times L}, $ for $t \geq 0$ the algorithm computes:
+%%
+\begin{align}
+\begin{split}
+\label{eq:amp}
+    &\TTheta^{t} = \X \hat{\B}^t -  \hat{\bR}^{t-1} (\F^t)^\top\,, \; \; \; \hat{\bR}^t = g^t\left(\TTheta^t, \y\right) \, ,  \\
+    &\B^{t+1} = \X^\top \hat{\bR}^t -  \hat{\B}^{t} (\C^t)^\top\,, \; \; \; \hat{\B}^{t} = f^{t}\left(\B^{t}\right), \, \\
+\end{split}
+\end{align}
+where the denoising functions $g^t: \R^{n\times L}\times \R^{n}\to \R^{n\times L}$ and $f^t: \R^{p\times L}\to \R^{p\times L}$ are used to define the matrices $\F^t$, $\C^t$ as follows:
+\begin{align*}
+    \C^t &= \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\TTheta^t, \y\right)\, , \; \; \; \F^{t} = \frac{1}{n} \sum_{j=1}^p \d_j{f_j^{t}}(\B^{t}).
+\end{align*}
+Here $\partial_i{g^t_i}\left(\TTheta, \y\right)$ is the $L\times L$ Jacobian  of $g^t_i$ w.r.t. the $i$th row of $\TTheta$.
+Similarly, $\d_j{f_j^{t}}(\B^{t})$ is the $L \times L$ Jacobian of $f_j^t$ with respect to the $j$-th row of its argument. 
+
+Rewrite it into:
+%%
+\begin{align}
+\begin{split}
+\label{eq:amp}
+    &(\X\B)^{t} = \X \hat{\B}^t -  \hat{\bR}^{t-1} (\F^t)^\top\,, \; \; \; \hat{\bR}^t = g^t\left((\X\B)^t, \y\right) \, ,  \\
+    &\B^{t+1} = \X^\top \hat{\bR}^t -  \hat{\B}^{t} (\frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\TTheta^t, \y\right))^\top\,, \; \; \; \hat{\B}^{t} = f^{t}\left(\B^{t}\right), \, \\
+\end{split}
+\end{align}
 
 
