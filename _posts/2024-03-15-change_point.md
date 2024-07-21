@@ -81,11 +81,14 @@ Starting with an initializer $B^0\in R^{p\times L}$ and defining $\hat{R}^{-1}:=
 \end{align}
 
 where the denoising functions $g^t: R^{n\times L}\times R^{n}\to R^{n\times L}$ and $f^t: R^{p\times L}\to R^{p\times L}$ are used to define the matrices $F^t$, $C^t$ as follows:
-\begin{align*}
-    C^t &= \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\Theta^t, y\right)\, , \; \; \; \F^{t} = \frac{1}{n} \sum_{j=1}^p d_j{f_j^{t}}(B^{t}).
-\end{align*}
+$C^t &= \frac{1}{n} \sum_{i=1}^n \partial_i{g^t_i}\left(\Theta^t, y\right)\, , \; \; \; \F^{t} = \frac{1}{n} \sum_{j=1}^p d_j{f_j^{t}}(B^{t})$
 
-Here $\partial_i{g^t_i}\left(\Theta, \y\right)$ is the $L\times L$ Jacobian  of $g^t_i$ w.r.t. the $i$th row of $\Theta$.
-Similarly, $\d_j{f_j^{t}}(B^{t})$ is the $L \times L$ Jacobian of $f_j^t$ with respect to the $j$-th row of its argument. 
+Here $\partial_i{g^t_i}\left(\Theta, y\right)$ is the $L\times L$ Jacobian  of $g^t_i$ w.r.t. the $i$th row of $\Theta$.
+Similarly, $d_j{f_j^{t}}(B^{t})$ is the $L \times L$ Jacobian of $f_j^t$ with respect to the $j$-th row of its argument. 
 
 The memory terms $-\hat{R}^{t-1} (F^t)^\top$ and $-\hat{B}^{t} (C^t)^\top$ in AMP algorithm debias the iterates $\Theta^t$ and $B^{t+1}$, and enable a succinct distributional characterization.  
+
+In the high-dimensional limit as $n,p\to\infty$ (with $n/p \to \delta$),  the empirical distributions of $\Theta^t$ and $B^{t+1}$ are quantified through the random variables $\V_{\Theta}^t$ and $\V_{B}^{t+1}$ respectively, which are determined by matrics with respect to Gaussian.
+
+
+
